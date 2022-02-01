@@ -1,0 +1,48 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+header {
+    padding: 1rem;
+}
+nav {
+    margin: auto;
+    max-width: 70%;
+}
+form {
+    margin: auto;
+    max-width: 80%;
+}
+.attraction-display {
+    margin: 2rem auto;
+    display: grid;
+    justify-items: center;
+}
+.attraction {
+    margin-bottom: 0.85rem;
+    border: none;
+    background: #07b79d;
+    padding: 0.85rem;
+    border-radius: 0.55rem;
+    font-size: 2rem;
+    font-weight: 700;
+    animation: slidein 1.5s;
+}
+
+.attraction:hover {
+    cursor: pointer;
+    background: #6cebd8;
+}
+
+@keyframes slidein {
+    0% {
+        margin-left: -50%;
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+        margin-left: 0;
+    }
+}
