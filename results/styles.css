@@ -1,0 +1,17 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 3rem;
+}
+
+.input-container {
+    flex-direction: column;
+    align-items: flex-end;
+}
+.dropdown-container {
+    display: flex;
+}
+.search {
+    width: 60%;
+}
