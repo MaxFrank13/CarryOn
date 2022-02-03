@@ -1,35 +1,31 @@
-const tripKey = "5ae2e3f221c38a28845f05b6e28e235ac0bcd9dc05b2c8b37c888b48";
-const geoKey = "9e3d200f90a14971a704be16f41dc73c";
-const kindsInput = "foods";
-getCoords("London", "", "");
+$(function () {
+    // **** Selectors ****
 
+    const form = $("#card");
+    const searchBtn = $("#search-button");
+    const searchInput = $("#searchbar");
+    const country = $("#country")
+    const state = $("#state")
+    const kindsFoods = true; // value grabbed when form is submitted
+    const kindsCulture = false; // value grabbed when form is submitted
+    const kindsTransportation = false; // value grabbed when form is submitted
 
-function getCoords(city, state, country) {
-    console.log(country);
-    const requestUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${city},${state},${country}&limit=5&appid=${geoKey}`;
+    // **** Event Listeners ****
 
-    fetch(requestUrl)
-        .then(function(response){
-            return response.json();
-        })
-        .then(function(data){
-            console.log(data);
-            const output = [];
+    searchBtn.click(handleSubmit);
 
-            // getData(output);
-        })
-}
+    // **** Functions ****
 
-function getData(object) {
-    const requestUrl = `https://api.opentripmap.com/0.1/en/places/radius?radius=5000&lon=${object.lon}&lat=${object.lat}&kinds=${kindsInput}&name=${object.name}&apikey=${tripKey}`
+    function handleSubmit(event) {
+        const searchVal = searchInput.val();
+        const countryCode = country.val();
+        const stateCode = state.val();
 
-    fetch(requestUrl)
-        .then(function(response){
-            return response.json();
-        })
-        .then(function(data){
-            console.log(data);
-            createButton(data.features[0].properties.xid, data.features[0].properties.name);
-        })
-}
-
+        if (!searchVal) {
+            console.error("Please provide a search input");
+            return;
+        }
+        const queryString = `./results.html?q=${searchVal},${stateCode},${countryCode}`
+        location.assign(queryString);
+    }
+})

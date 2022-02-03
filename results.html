@@ -5,28 +5,25 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+  <!-- FONT AWESOME -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- JQUERY UI LINK -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="./assets/css/styles.css" />
-  <title>CarryOn</title>
+  <link rel="stylesheet" href="./assets/css/results.css" />
+  <title>CarryOn Results</title>
 </head>
 
 <body>
-
-  
-  <section class="section is-large">
-
-    <!-- "card" container -->
-    <div class="container is-max-desktop">
-      <div id="card" class="notification is-primary">
-
-        <!-- search bar -->
-        <div class="columns is-centered">
-          <div id="extrapadding" class="field has-addons">
+  <section class="hero is-primary">
+    <div class="hero-body header">
+      <p class="title">
+        Carry<span>On</span>
+      </p>
+      <div class="level input-container">      
+          <div class="field has-addons">
             <div class="control">
               <input id="searchbar" class="input" type="text" placeholder="Enter City">
             </div>
@@ -35,15 +32,14 @@
               <a id="search-button" class="button is-info">Search</a>
             </div>
           </div>
-        </div>
-
-        <!-- START dropdown sections -->
-        <div class="level">
-          <!-- country dropdown -->
+        <div class="dropdown-container control has-icons-left">
           <div class="control has-icons-left">
-            <div class="select is-primary is-normal">
+            <div class="select is-primary is-normal country-container">
+              <span class="icon is-left">
+                <i class="fas fa-globe"></i>
+              </span>
               <select id="country" name="country">
-                <option value="" selected>Enter Country</option>
+                <option value="" selected></option>
                 <option value="AF">Afghanistan</option>
                 <option value="AX">Aland Islands</option>
                 <option value="AL">Albania</option>
@@ -298,16 +294,15 @@
                 <option value="ZW">Zimbabwe</option>
               </select>
             </div>
-            <span class="icon is-left">
-              <i class="fas fa-globe"></i>
-            </span>
-          </div>
 
-          <!-- state dropdown -->
+          </div>
           <div class="control has-icons-left">
-            <div class="select is-primary is-normal">
+            <div class="select is-primary is-normal state-container">
+              <span class="icon is-left">
+                <i class="fas fa-globe"></i>
+              </span>
               <select id="state" name="state">
-                <option value="" selected>Enter State</option>
+                <option value="" selected>state (US only)</option>
                 <option value="AL">Alabama</option>
                 <option value="AK">Alaska</option>
                 <option value="AZ">Arizona</option>
@@ -360,30 +355,27 @@
                 <option value="WI">Wisconsin</option>
                 <option value="WY">Wyoming</option>
               </select>
-              <span class="icon is-left">
-                <i class="fas fa-globe"></i>
-              </span>
             </div>
           </div>
+          <div class="field checkbox-container">
+            <label class="checkbox">
+              <input id="cultural" value="cultural"type="checkbox">
+              Cultural Attractions
+            </label>
+            <labelclass="checkbox">
+              <input id="foods"  value="foods" type="checkbox">
+              Food & Drink
+            </label>
+            <label class="checkbox">
+              <input id="transport" value="transport" type="checkbox">
+              Transportation
+            </label>
+          </div>
         </div>
-        <!-- END dropdown sections -->
-
-        <!-- description section -->
-        <section class="section">
-          <h1 class="title columns is-centered">Search any city you like</h1>
-          <h2 id="extrapadding" class="subtitle columns is-centered">
-            A simple travel search tool for finding information on any destination.</h2>
-        </section>
-
       </div>
-    </div>
   </section>
-
-  <!-- JQUERY, MOMENT.JS LINKS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
-  <script src="./assets/js/app.js"></script>
+  <script src="./assets/js/results.js"></script>
 </body>
-
-</html>
