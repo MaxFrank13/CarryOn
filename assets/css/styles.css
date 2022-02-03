@@ -1,0 +1,12 @@
+#extrapadding {
+    padding: 10px;
+}
+
+#card {
+    background-color:rgb(80, 148, 108) !important;
+}
+
+#searchbar {
+    max-width: 400px !important;
+    width: 400px !important;
+}
