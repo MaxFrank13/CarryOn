@@ -23,14 +23,12 @@ $(function () {
     const cultural = $("#cultural")
     const foods = $("#foods")
     const transport = $("#transport")
+    const DisplayInfoCards = document.getElementById("infocards")
 
-    const kindsFoods = true; // value grabbed when form is submitted
-    const kindsCulture = false; // value grabbed when form is submitted
-    const kindsTransportation = false; // value grabbed when form is submitted
-
-    // **** Event Listeners ****
+    // **** Event Listeners ***
 
     searchBtn.click(function () {
+        DisplayInfoCards.innerHTML = '';
         const requestQuery = `q=${searchInput.val()},${state.val()},${country.val()}`
         console.log(searchInput.val())
         console.log(country.val())
@@ -63,6 +61,8 @@ $(function () {
                 };
 
                 getData(output);
+
+                console.log(data);
             })
     }
 
@@ -75,7 +75,42 @@ $(function () {
             })
             .then(function (data) {
                 console.log(data);
-                // createButton(data.features[0].properties.xid, data.features[0].properties.name);
+                console.log(data.features[0].properties.xid);
+
+                for (let i = 0; i < 4; i++) {
+                useXID(data.features[i].properties.xid);
+                }
+
             })
+
+    }
+
+    function useXID(xid) {
+        const requestUrl = `https://api.opentripmap.com/0.1/en/places/xid/${xid}?apikey=${tripKey}`
+        
+        fetch(requestUrl)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                console.log(data);
+                infoCards(data);
+            })
+
+    }
+
+    // dynamically created info cards
+    function infoCards(data) {
+        var newCards = document.getElementById("infocards");
+        console.log(newCards);
+        newCards.classList.add("columns");
+        var newCard = document.createElement("div");
+        newCard.classList.add("column");
+        newCard.innerHTML = `<h4>Here's info!</h4>
+        <img class="cards-image" src= ${data.preview.source} alt= "${data.name} image">
+        <p class="cards-name">${data.name}</p>
+        <a class="cards-link" href = ${data.otm}>Explore more info here!</a>
+        <p class="cards-description">${data.wikipedia_extracts.text}</p>`
+        newCards.appendChild(newCard);
     }
 })

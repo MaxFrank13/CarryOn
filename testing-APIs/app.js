@@ -50,7 +50,7 @@ function getData(object) {
 
 function createButton (xid, value) {
     const newAnchor = document.createElement("a");
-    newAnchor.href = `https://opentripmap.com/en/card/${xid}`;
+    newAnchor.href = `https://opentripmap.com/en/card/${data.features[0].properties[0].xid}`;
     newAnchor.target = "_blank";
     const newBtn = document.createElement("button");
     newBtn.classList.add("attraction");
