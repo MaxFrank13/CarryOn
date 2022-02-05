@@ -4,11 +4,12 @@ $(function () {
     const form = $("#card");
     const searchBtn = $("#search-button");
     const searchInput = $("#searchbar");
-    const country = $("#country")
-    const state = $("#state")
-    const kindsFoods = true; // value grabbed when form is submitted
-    const kindsCulture = false; // value grabbed when form is submitted
-    const kindsTransportation = false; // value grabbed when form is submitted
+    const country = $("#country");
+    const state = $("#state");
+    const cultural = $("#cultural");
+    const foods = $("#foods");
+    const transport =$("#transport");
+   
 
     // **** Event Listeners ****
 
@@ -20,12 +21,25 @@ $(function () {
         const searchVal = searchInput.val();
         const countryCode = country.val();
         const stateCode = state.val();
+        let queryString = `./results.html?q=${searchVal},${stateCode},${countryCode}`
 
+        if (cultural[0].checked){ 
+            const culturalBox = cultural[0].value;
+           queryString +=  "&"+culturalBox;
+        }
+        if (foods[0].checked){ 
+            const foodslBox = foods[0].value;
+           queryString +=  "&"+foodslBox;
+        }
+        if (transport[0].checked){ 
+            const transportBox = transport[0].value;
+           queryString +=  "&"+transportBox;
+        }
+        location.assign(queryString);
         if (!searchVal) {
             console.error("Please provide a search input");
             return;
         }
-        const queryString = `./results.html?q=${searchVal},${stateCode},${countryCode}`
-        location.assign(queryString);
+
     }
 })
