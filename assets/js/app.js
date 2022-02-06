@@ -35,11 +35,11 @@ $(function () {
             const transportBox = transport[0].value;
            queryString +=  "&"+transportBox;
         }
-        location.assign(queryString);
         if (!searchVal) {
             console.error("Please provide a search input");
             return;
         }
+        location.assign(queryString);
 
     }
 })

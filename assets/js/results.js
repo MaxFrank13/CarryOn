@@ -1,12 +1,4 @@
 $(function () {
-
-    // get query string from URL (i.e. ?q=Portland,ME,US)
-    console.log(document.location.search);
-    // split string into array at the '?' and access the value at index 1 (i.e. q=Portland,ME,US) to use in API call
-    const queryInput = document.location.search.split("?")[1];
-
-    // function works for cities but doesn't account for checkboxes yet
-
     // **** API keys ****
 
     // Open Trip API
@@ -25,26 +17,60 @@ $(function () {
     const transport = $("#transport")
     const DisplayInfoCards = document.getElementById("infocards")
 
+    // split string at the '?' and access the value at index 1 (i.e. q=Portland,ME,US&foods) then split again at '&'
+    const queryInput = document.location.search.split("?")[1].split("&");
+    console.log(queryInput);
+    // cut the array into query and its parameters
+    const params = queryInput.splice(1);
+    console.log(queryInput);
+    console.log(params);
+
+    // join parameters to use in fetch
+    if (params) {
+        const newString = params.join(',');
+        if (newString) {
+            // run the API calls using the query and its parameters
+            getCoords(queryInput, newString);
+        } else {
+            // set default to "kinds=interesting_places"
+            getCoords(queryInput, "interesting_places");
+        }
+    }
+
     // **** Event Listeners ***
 
     searchBtn.click(function () {
-        DisplayInfoCards.innerHTML = '';
-        const requestQuery = `q=${searchInput.val()},${state.val()},${country.val()}`
-        console.log(searchInput.val())
-        console.log(country.val())
-        console.log(cultural.val())
-        console.log(foods.val())
-        console.log(transport.val())
-        getCoords(requestQuery);
+        // reassign page using input values from header form
+        const searchVal = searchInput.val();
+        const countryCode = country.val();
+        const stateCode = state.val();
+        let queryString = `./results.html?q=${searchVal},${stateCode},${countryCode}`
+
+        if (cultural[0].checked) {
+            const culturalBox = cultural[0].value;
+            queryString += "&" + culturalBox;
+        }
+        if (foods[0].checked) {
+            const foodslBox = foods[0].value;
+            queryString += "&" + foodslBox;
+        }
+        if (transport[0].checked) {
+            const transportBox = transport[0].value;
+            queryString += "&" + transportBox;
+        }
+        if (!searchVal) {
+            console.error("Please provide a search input");
+            return;
+        }
+        location.assign(queryString);
     })
 
-    getCoords(queryInput);
 
     // **** API Request functions ****
 
-    function getCoords(input) {
+    function getCoords(query, params) {
         console.log(country);
-        const requestUrl = `https://api.openweathermap.org/geo/1.0/direct?${input}&limit=5&appid=${geoKey}`;
+        const requestUrl = `https://api.openweathermap.org/geo/1.0/direct?${query}&limit=5&appid=${geoKey}`;
 
         fetch(requestUrl)
             .then(function (response) {
@@ -60,14 +86,12 @@ $(function () {
                     state: data[0].state
                 };
 
-                getData(output);
-
-                console.log(data);
+                getData(output, params);
             })
     }
 
-    function getData(object) {
-        const requestUrl = `https://api.opentripmap.com/0.1/en/places/radius?radius=5000&lon=${object.lon}&lat=${object.lat}&kinds=cultural,foods&name=${object.name}&apikey=${tripKey}`
+    function getData(dataObject, paramString) {
+        const requestUrl = `https://api.opentripmap.com/0.1/en/places/radius?radius=5000&lon=${dataObject.lon}&lat=${dataObject.lat}&kinds=${paramString}&rate=3&apikey=${tripKey}`
 
         fetch(requestUrl)
             .then(function (response) {
@@ -75,10 +99,21 @@ $(function () {
             })
             .then(function (data) {
                 console.log(data);
-                console.log(data.features[0].properties.xid);
-
-                for (let i = 0; i < 4; i++) {
-                useXID(data.features[i].properties.xid);
+                // initialize an empty array to push feature names to
+                const featuresArray = [];
+                // for loop to run for as long as features array length is less than 4
+                for (let i = 0; featuresArray.length < 4; i++) {
+                    
+                    if (i === data.features.length) {
+                        // end the function if there are less than four features
+                        return;
+                    }
+                    // check array of feature names to see if the current feature is a duplicate
+                    if (!featuresArray.includes(data.features[i].properties.name)){
+                        // if it's not duplicate, add the name to the array and then call the XID function
+                        featuresArray.push(data.features[i].properties.name);
+                        useXID(data.features[i].properties.xid);
+                    }
                 }
 
             })
@@ -87,7 +122,7 @@ $(function () {
 
     function useXID(xid) {
         const requestUrl = `https://api.opentripmap.com/0.1/en/places/xid/${xid}?apikey=${tripKey}`
-        
+
         fetch(requestUrl)
             .then(function (response) {
                 return response.json();
@@ -107,9 +142,9 @@ $(function () {
         var newCard = document.createElement("div");
         newCard.classList.add("column");
         newCard.innerHTML = `<h4>Here's info!</h4>
-        <img class="cards-image" src= ${data.preview.source} alt= "${data.name} image">
+        <img class="cards-image" src=${data.preview.source} alt=${data.name} />
         <p class="cards-name">${data.name}</p>
-        <a class="cards-link" href = ${data.otm}>Explore more info here!</a>
+        <a class="cards-link" href = ${data.otm} target="_blank">Explore more info here!</a>
         <p class="cards-description">${data.wikipedia_extracts.text}</p>`
         newCards.appendChild(newCard);
     }
