@@ -8,6 +8,7 @@ $(function () {
 
     // **** Selectors ****
 
+    const form = $(".input-container");
     const searchBtn = $("#search-button");
     const searchInput = $("#searchbar");
     const state = $("#state")
@@ -15,8 +16,9 @@ $(function () {
     const cultural = $("#cultural")
     const foods = $("#foods")
     const transport = $("#transport")
-    const DisplayInfoCards = document.getElementById("infocards")
 
+    console.log(document.location.search);
+    
     // split string at the '?' and access the value at index 1 (i.e. q=Portland,ME,US&foods) then split again at '&'
     const queryInput = document.location.search.split("?")[1].split("&");
     console.log(queryInput);
@@ -39,32 +41,7 @@ $(function () {
 
     // **** Event Listeners ***
 
-    searchBtn.click(function () {
-        // reassign page using input values from header form
-        const searchVal = searchInput.val();
-        const countryCode = country.val();
-        const stateCode = state.val();
-        let queryString = `./results.html?q=${searchVal},${stateCode},${countryCode}`
-
-        if (cultural[0].checked) {
-            const culturalBox = cultural[0].value;
-            queryString += "&" + culturalBox;
-        }
-        if (foods[0].checked) {
-            const foodslBox = foods[0].value;
-            queryString += "&" + foodslBox;
-        }
-        if (transport[0].checked) {
-            const transportBox = transport[0].value;
-            queryString += "&" + transportBox;
-        }
-        if (!searchVal) {
-            console.error("Please provide a search input");
-            return;
-        }
-        location.assign(queryString);
-    })
-
+    form.submit(handleSubmit);
 
     // **** API Request functions ****
 
@@ -102,22 +79,20 @@ $(function () {
                 // initialize an empty array to push feature names to
                 const featuresArray = [];
                 // for loop to run for as long as features array length is less than 4
-                for (let i = 0; featuresArray.length < 4; i++) {
-                    
+                for (let i = 0; featuresArray.length < 5; i++) {
+
                     if (i === data.features.length) {
                         // end the function if there are less than four features
                         return;
                     }
                     // check array of feature names to see if the current feature is a duplicate
-                    if (!featuresArray.includes(data.features[i].properties.name)){
+                    if (!featuresArray.includes(data.features[i].properties.name)) {
                         // if it's not duplicate, add the name to the array and then call the XID function
                         featuresArray.push(data.features[i].properties.name);
                         useXID(data.features[i].properties.xid);
                     }
                 }
-
             })
-
     }
 
     function useXID(xid) {
@@ -134,18 +109,60 @@ $(function () {
 
     }
 
+    // **** Rendering Functions ****
+    
     // dynamically created info cards
     function infoCards(data) {
         var newCards = document.getElementById("infocards");
-        console.log(newCards);
         newCards.classList.add("columns");
+
         var newCard = document.createElement("div");
         newCard.classList.add("column");
+
+        // set image to placeholder if there isn't one provided
+        var imgSource = '';
+        // var imgSource = data.preview.source || "assets/dev-docs/placeholder.jpg";
+
+        if(data.preview) {
+            imgSource = data.preview.source;
+        } else {
+            imgSource = "assets/dev-docs/placeholder.jpg";
+            // artist: Dariusz Sankowski
+        }
+
         newCard.innerHTML = `<h4>Here's info!</h4>
-        <img class="cards-image" src=${data.preview.source} alt=${data.name} />
+        <img class="cards-image" src=${imgSource} alt=${data.name} />
         <p class="cards-name">${data.name}</p>
         <a class="cards-link" href = ${data.otm} target="_blank">Explore more info here!</a>
         <p class="cards-description">${data.wikipedia_extracts.text}</p>`
         newCards.appendChild(newCard);
+    }
+
+    function handleSubmit(event) {
+        event.preventDefault();
+
+        const searchVal = searchInput.val();
+        const countryCode = country.val();
+        const stateCode = state.val();
+        let queryString = `./results.html?q=${searchVal},${stateCode},${countryCode}`
+
+        if (cultural[0].checked) {
+            const culturalBox = cultural[0].value;
+            queryString += "&" + culturalBox;
+        }
+        if (foods[0].checked) {
+            const foodslBox = foods[0].value;
+            queryString += "&" + foodslBox;
+        }
+        if (transport[0].checked) {
+            const transportBox = transport[0].value;
+            queryString += "&" + transportBox;
+        }
+        if (!searchVal) {
+            console.error("Please provide a search input");
+            return;
+        }
+        location.assign(queryString);
+
     }
 })
