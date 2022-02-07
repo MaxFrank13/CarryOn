@@ -1,7 +1,7 @@
 $(function () {
     // **** Selectors ****
 
-    const form = $("#card");
+    const form = $(".container");
     const searchBtn = $("#search-button");
     const searchInput = $("#searchbar");
     const country = $("#country");
@@ -13,11 +13,13 @@ $(function () {
 
     // **** Event Listeners ****
 
-    searchBtn.click(handleSubmit);
+    form.submit(handleSubmit);
 
     // **** Functions ****
 
     function handleSubmit(event) {
+        event.preventDefault();
+        
         const searchVal = searchInput.val();
         const countryCode = country.val();
         const stateCode = state.val();
