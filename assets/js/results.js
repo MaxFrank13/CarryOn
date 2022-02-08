@@ -15,7 +15,7 @@ $(function () {
     const country = $("#country")
     const cultural = $("#cultural")
     const foods = $("#foods")
-    const transport = $("#transport")
+    const natureSports = $("#nature-sports");
     const bg = document.querySelector("body");
 
 
@@ -172,9 +172,9 @@ $(function () {
             const foodslBox = foods[0].value;
             queryString += "&" + foodslBox;
         }
-        if (transport[0].checked) {
-            const transportBox = transport[0].value;
-            queryString += "&" + transportBox;
+        if (natureSports[0].checked) {
+            const natureSportsBox = natureSports[0].value;
+            queryString += "&" + natureSportsBox;
         }
         if (!searchVal) {
             console.error("Please provide a search input");

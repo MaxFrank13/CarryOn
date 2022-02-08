@@ -8,7 +8,7 @@ $(function () {
     const state = $("#state");
     const cultural = $("#cultural");
     const foods = $("#foods");
-    const transport = $("#transport");
+    const natureSports = $("#nature-sports");
     const bg = document.querySelector("body");
     const imageKey = "Eaf6kScI2v8YQdUzjFbCdG3luvlmSVPCkR-ST2jKkIs";
 
@@ -36,9 +36,9 @@ $(function () {
             const foodslBox = foods[0].value;
             queryString += "&" + foodslBox;
         }
-        if (transport[0].checked) {
-            const transportBox = transport[0].value;
-            queryString += "&" + transportBox;
+        if (natureSports[0].checked) {
+            const natureSportsBox = natureSports[0].value;
+            queryString += "&" + natureSportsBox;
         }
         if (!searchVal) {
             console.error("Please provide a search input");
