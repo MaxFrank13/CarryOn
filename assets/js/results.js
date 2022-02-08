@@ -9,6 +9,7 @@ $(function () {
     // **** Selectors ****
 
     const form = $(".input-container");
+    const title = $(".title");
     const searchBtn = $("#search-button");
     const searchInput = $("#searchbar");
     const state = $("#state")
@@ -18,22 +19,25 @@ $(function () {
     const natureSports = $("#nature-sports");
     const bg = document.querySelector("body");
 
-    // const storageArray = localStorage.getItem("TravelApp");
+    const getStorage = JSON.parse(localStorage.getItem("TravelApp")) || [];
 
     // split string at the '?' and access the value at index 1 (i.e. q=Portland,ME,US&foods) then split again at '&'
     const queryInput = document.location.search.split("?")[1].split("&");
+
     const cityName = document.location.search.split("?")[1].split("=")[1].split(",")[0];
 
-    storageArray.push({
-        name: cityName,
-        query: queryInput
-    })
-    console.log(cityName);
-    localStorage.setItem("TravelApp", JSON.stringify(storageArray))
+    if (getStorage.filter(obj => obj.name === cityName.replaceAll("%20", " ")).length === 0) {
+        getStorage.push({
+            name: cityName.replaceAll("%20", " "),
+            query: queryInput[0]
+        })
+    }
+    localStorage.setItem("TravelApp", JSON.stringify(getStorage));
+
+    displayHistory();
+
     // cut the array into query and its parameters
     const params = queryInput.splice(1);
-    console.log(queryInput);
-    console.log(params);
 
     // join parameters to use in fetch
     if (params) {
@@ -52,6 +56,10 @@ $(function () {
     form.submit(handleSubmit);
 
     getImage()
+
+    title.click(function () {
+        location.assign("./index.html")
+    })
 
     // **** API Request functions ****
 
@@ -161,6 +169,10 @@ $(function () {
         newCards.appendChild(newCard);
     }
 
+    function displayHistory() {
+        
+    }
+
     function handleSubmit(event) {
         event.preventDefault();
 
@@ -185,6 +197,7 @@ $(function () {
             console.error("Please provide a search input");
             return;
         }
+
         location.assign(queryString);
 
     }
