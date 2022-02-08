@@ -19,8 +19,8 @@ UNH Bootcamp: Group 2's 1st Project - Travel Information Web Application
 - Justin Asari
     - (email)
 ## Links
-GitHub Repository: https://github.com/robertschwartz603/CarryOn
-GitHub Page: (page link)
+- GitHub Repository: https://github.com/robertschwartz603/CarryOn
+- GitHub Page: (page link)
 
 ## About CarryOn
 CarryOn is a travel information website that allows a user to search a specified city's lodges, travel accommodations, and places of interest. Users are able to filter out certain categories such as; food, lodging, amusements, historical/cultural places of interest, nature, and sports. The user is able to specify a city using state and country codes as well. When the user searches a city, pictures highlighting the user's city will be displayed in a banner with the requested data underneath within cards. 
@@ -59,5 +59,6 @@ CarryOn is a travel information website that allows a user to search a specified
 - February 7, 2022:
     - Added enter button.
     - Placeholder image added when image is not provided by data
+    - Updated README/Fixed formatting
 
 ## Screenshots/GIFs
