@@ -5,15 +5,44 @@ background-size: cover;
 overflow: hidden;
 }
 
+div.checkbox-container {
+    justify-content: space-evenly;
+}
+
+.checkbox {
+    background: #0d350d;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.2rem;
+    transition: 0.3s ease-in-out;
+}
+.checkbox:hover {
+    background: rgb(245, 235, 150);
+    transform: scale(1.1);
+}
+
 #extrapadding {
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
     padding: 10px;
 }
 
 #card {
-    background-color:rgb(80, 148, 108) !important;
+    background-color:rgba(80, 148, 108, 0.75) !important;
 }
 
 #searchbar {
     max-width: 400px !important;
     width: 400px !important;
+    border-radius: 0.4rem;
+}
+#search-button {
+    background: rgb(13, 53, 13);
+    border-radius: 0.4rem;
+    transition: 0.3s ease-in-out;
+}
+#search-button:hover {
+    color: black;
+    background: rgb(245, 235, 150);
+    transform: scale(1.1);
 }
