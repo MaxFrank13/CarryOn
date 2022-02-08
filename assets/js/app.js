@@ -4,6 +4,7 @@ $(function () {
     const form = $(".container");
     const searchBtn = $("#search-button");
     const searchInput = $("#searchbar");
+    const historyHeader = $(".history-header")
     const historyList = $(".search-list")
     const country = $("#country");
     const state = $("#state");
@@ -15,13 +16,19 @@ $(function () {
 
     // **** Event Listeners ****
 
-    form.submit(handleSubmit);
-
-    getImage()
-    
     const getStorage = JSON.parse(localStorage.getItem("TravelApp"));
 
+    getImage();
+    
     displayHistory(getStorage);
+    
+    form.submit(handleSubmit);
+
+    historyHeader.click(dropDownHistory);
+
+    historyList.click(handleHistoryClick)
+
+    
 
     // **** Functions ****
 
@@ -53,13 +60,36 @@ $(function () {
 
     }
 
-    function displayHistory() {
+    function displayHistory(array) {
         array.forEach(obj => {
             const newListItem = document.createElement("li");
-            newListItem.textContent = obj.name;
-            newListItem.append(historyList);
+            newListItem.dataset.query = obj.query;
+            newListItem.classList.add("list-item")
+
+            const searchParams = obj.query.split("&");
+            let infoText = obj.name;
+            searchParams.forEach((param, index) => {
+                if (index > 0) {
+                    infoText += " - " + param;
+                }
+            })
+            
+            newListItem.textContent = infoText;
+            historyList.append(newListItem);
         })
     }
+
+    function dropDownHistory() {
+        historyList.toggle("hide-history");
+    }
+
+    function handleHistoryClick(event) {
+        if (event.target.classList.contains("list-item")){
+            location.assign(`./results.html${event.target.dataset.query}`)
+        }
+    }
+
+
     // **** Api request ****
     function getImage() {
         const requestUrl = `https://api.unsplash.com/search/photos/?query=travel&client_id=${imageKey}`;

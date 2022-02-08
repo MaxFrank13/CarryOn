@@ -26,10 +26,10 @@ $(function () {
 
     const cityName = document.location.search.split("?")[1].split("=")[1].split(",")[0];
 
-    if (getStorage.filter(obj => obj.name === cityName.replaceAll("%20", " ")).length === 0) {
+    if (getStorage.filter(obj => obj.query === document.location.search).length === 0) {
         getStorage.push({
             name: cityName.replaceAll("%20", " "),
-            query: queryInput[0]
+            query: document.location.search
         })
     }
     localStorage.setItem("TravelApp", JSON.stringify(getStorage));

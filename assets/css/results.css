@@ -1,18 +1,33 @@
+:root {
+    /* colors */
+    --yellow: rgb(245, 235, 150);
+    --light-green: rgba(80, 148, 108, 0.75);
+    --dark-green: #0d350d;
+    --rounded-shadow: inset -9px -9px 5px -9px #02bb02, inset 7px 7px 8px -3px #10180b;
+
+    --transition: 0.3s ease-in-out;
+}
 body {
     background-size: cover;
-}
-    
+} 
 .header {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     padding: 2rem 10%;
-    background: rgb(80, 148, 108);
+    background: var(--light-green);
 }
-
+.title {
+    font-size: 4rem;
+    display: flex;
+    flex-direction: column;
+    text-shadow: -5px 3px 5px black;
+    transition: var(--transition);
+}
 .title:hover {
     cursor: pointer;
+    text-shadow: -5px 3px 10px black;
 }
 .title span {
     color: rgb(20, 90, 221);
@@ -38,22 +53,29 @@ body {
     width: 16rem;
 }
 .checkbox {
-    background: #0d350d;
+    background: var(--dark-green);
     padding: 0.2rem 0.5rem;
     border-radius: 0.2rem;
+    box-shadow: var(--rounded-shadow);
     transition: 0.3s ease-in-out;
 }
 .checkbox:hover {
-    background: rgb(245, 235, 150);
+    background: var(--yellow);
+    transform: scale(1.1);
+    background: var(--yellow);
+    box-shadow: 0px 0px 2px 3px black;
     transform: scale(1.1);
 }
 #search-button {
-    background: rgb(13, 53, 13);
+    background: var(--dark-green);
+    border: none;
+    box-shadow: var(--rounded-shadow);
     transition: 0.3s ease-in-out;
 }
 #search-button:hover {
     color: black;
-    background: rgb(245, 235, 150);
+    background: var(--yellow);
+    box-shadow: 0px 0px 2px 3px black;
 }
 .results {
     background-color: rgba(255, 255, 255, 0.85);
@@ -92,6 +114,13 @@ body {
     .dropdown-container {
         flex-direction: row;
     }
+}
+
+@media screen and (min-width: 1075px) {
+    .title {
+        flex-direction: row;
+    }
+    
 }
 
 .results {
