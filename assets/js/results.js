@@ -149,6 +149,7 @@ $(function () {
 
         var newCard = document.createElement("div");
         newCard.classList.add("column");
+        newCard.classList.add("results");
 
         // set image to placeholder if there isn't one provided
         var imgSource = '';
@@ -161,7 +162,7 @@ $(function () {
             // artist: Dariusz Sankowski
         }
 
-        newCard.innerHTML = `<h4>Here's info!</h4>
+        newCard.innerHTML = `<h4>__________</h4>
         <img class="cards-image" src=${imgSource} alt=${data.name} />
         <p class="cards-name">${data.name}</p>
         <a class="cards-link" href = ${data.otm} target="_blank">Explore more info here!</a>
