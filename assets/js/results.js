@@ -1,6 +1,6 @@
 $(function () {
     // **** API keys ****
-
+    const imageKey = "Eaf6kScI2v8YQdUzjFbCdG3luvlmSVPCkR-ST2jKkIs";
     // Open Trip API
     const tripKey = "5ae2e3f221c38a28845f05b6e28e235ac0bcd9dc05b2c8b37c888b48";
     // GeoCode API from Open Weather
@@ -16,9 +16,11 @@ $(function () {
     const cultural = $("#cultural")
     const foods = $("#foods")
     const transport = $("#transport")
+    const bg = document.querySelector("body");
+
 
     console.log(document.location.search);
-    
+
     // split string at the '?' and access the value at index 1 (i.e. q=Portland,ME,US&foods) then split again at '&'
     const queryInput = document.location.search.split("?")[1].split("&");
     console.log(queryInput);
@@ -42,6 +44,9 @@ $(function () {
     // **** Event Listeners ***
 
     form.submit(handleSubmit);
+
+    getImage()
+
 
     // **** API Request functions ****
 
@@ -108,9 +113,22 @@ $(function () {
             })
 
     }
+    // **** Api request ****
+    function getImage() {
+        const requestUrl = `https://api.unsplash.com/search/photos/?query=travel&client_id=${imageKey}`;
+        fetch(requestUrl)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                console.log(data.results);
+                bg.style.backgroundImage = `url(${data.results[Math.floor(Math.random() * 10)].urls.regular}`;
+            })
+    }
+
 
     // **** Rendering Functions ****
-    
+
     // dynamically created info cards
     function infoCards(data) {
         var newCards = document.getElementById("infocards");
@@ -123,7 +141,7 @@ $(function () {
         var imgSource = '';
         // var imgSource = data.preview.source || "assets/dev-docs/placeholder.jpg";
 
-        if(data.preview) {
+        if (data.preview) {
             imgSource = data.preview.source;
         } else {
             imgSource = "assets/dev-docs/placeholder.jpg";
