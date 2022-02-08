@@ -133,7 +133,7 @@ $(function () {
             })
             .then(function (data) {
                 console.log(data.results);
-                bg.style.backgroundImage = `url(${data.results[Math.floor(Math.random() * 10)].urls.regular}`;
+                bg.style.background = `linear-gradient(rgba(226, 180, 154, 0.205), rgba(17, 42, 153, 0.233)), url(${data.results[Math.floor(Math.random() * 10)].urls.regular}) center/cover`;
             })
     }
 
@@ -151,7 +151,6 @@ $(function () {
 
         // set image to placeholder if there isn't one provided
         var imgSource = '';
-        // var imgSource = data.preview.source || "assets/dev-docs/placeholder.jpg";
 
         if (data.preview) {
             imgSource = data.preview.source;
@@ -160,11 +159,13 @@ $(function () {
             // artist: Dariusz Sankowski
         }
 
-        newCard.innerHTML = `<h4>__________</h4>
+        newCard.innerHTML = `
         <img class="cards-image" src=${imgSource} alt=${data.name} />
-        <p class="cards-name">${data.name}</p>
-        <a class="cards-link" href = ${data.otm} target="_blank">Explore more info here!</a>
-        <p class="cards-description">${data.wikipedia_extracts.text}</p>`
+        <div class="info-container">
+            <h2 class="cards-name">${data.name}</h2>
+            <a class="cards-link" href = ${data.otm} target="_blank">Explore more info here!</a>
+            <p class="cards-description">${data.wikipedia_extracts.text}</p>
+        </div>`
         newCards.appendChild(newCard);
     }
 

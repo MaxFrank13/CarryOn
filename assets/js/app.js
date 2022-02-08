@@ -99,7 +99,7 @@ $(function () {
             })
             .then(function(data){
                 console.log(data.results);
-                bg.style.backgroundImage = `url(${data.results[Math.floor(Math.random() * 10)].urls.regular}`;
+                bg.style.background = `linear-gradient(rgba(226, 180, 154, 0.205), rgba(17, 42, 153, 0.233)), url(${data.results[Math.floor(Math.random() * 10)].urls.regular}) center/cover`;
             })
     }
 })

@@ -3,15 +3,28 @@
     --yellow: rgb(245, 235, 150);
     --light-green: rgba(80, 148, 108, 0.75);
     --dark-green: #0d350d;
-    --rounded-shadow: inset -9px -9px 5px -9px #02bb02, inset 7px 7px 8px -3px #10180b;
+    --rounded-shadow: inset -9px -9px 5px -9px #176e17, inset 7px 7px 8px -3px #10180b;
 
     --transition: 0.3s ease-in-out;
 }
 body {
     height: 100vh;
+    padding-top: 5%;
     background-repeat: no-repeat ;
     background-size: cover;
     overflow: hidden;
+}
+header h3 {
+    background: #1f281f;
+    color: white;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    font-size: 5rem;
+    font-weight: 500;
+    text-align: center;
+}
+header span {
+    color: rgb(20, 90, 221);
 }
 div.checkbox-container {
     gap: 1rem;
@@ -35,7 +48,7 @@ div.checkbox-container {
 #extrapadding {
     flex-direction: column;
     align-items: center;
-    gap: 2.5rem;
+    gap: 1.8rem;
     padding: 10px;
 }
 
@@ -45,8 +58,17 @@ div.checkbox-container {
     align-items: center;
     text-align: center;
     background-color: var(--light-green) !important;
+    box-shadow: inset 0px -4px 21px -4px black;
+    border-radius: 0;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
 }
-
+#card section {
+    padding: 2rem;
+}
+#card div:first-child {
+    margin: 0;
+}
 #searchbar {
     max-width: 400px !important;
     width: 400px !important;
