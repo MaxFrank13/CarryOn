@@ -20,7 +20,7 @@ $(function () {
 
     getImage();
     
-    displayHistory(getStorage);
+    if (getStorage) displayHistory(getStorage);
     
     form.submit(handleSubmit);
 
