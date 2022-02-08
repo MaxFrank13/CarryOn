@@ -4,6 +4,7 @@ $(function () {
     const form = $(".container");
     const searchBtn = $("#search-button");
     const searchInput = $("#searchbar");
+    const historyList = $(".search-list")
     const country = $("#country");
     const state = $("#state");
     const cultural = $("#cultural");
@@ -17,6 +18,10 @@ $(function () {
     form.submit(handleSubmit);
 
     getImage()
+    
+    const getStorage = JSON.parse(localStorage.getItem("TravelApp"));
+
+    displayHistory(getStorage);
 
     // **** Functions ****
 
@@ -46,6 +51,14 @@ $(function () {
         }
         location.assign(queryString);
 
+    }
+
+    function displayHistory() {
+        array.forEach(obj => {
+            const newListItem = document.createElement("li");
+            newListItem.textContent = obj.name;
+            newListItem.append(historyList);
+        })
     }
     // **** Api request ****
     function getImage() {

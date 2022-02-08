@@ -34,8 +34,6 @@ $(function () {
     }
     localStorage.setItem("TravelApp", JSON.stringify(getStorage));
 
-    displayHistory();
-
     // cut the array into query and its parameters
     const params = queryInput.splice(1);
 
@@ -170,9 +168,7 @@ $(function () {
         newCards.appendChild(newCard);
     }
 
-    function displayHistory() {
-        
-    }
+
 
     function handleSubmit(event) {
         event.preventDefault();
