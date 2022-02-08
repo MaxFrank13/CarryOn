@@ -1,9 +1,6 @@
 body {
-    height: 100vh;
-    background-repeat: no-repeat ;
     background-size: cover;
-    overflow: hidden;
-    }
+}
     
 .header {
     display: flex;
@@ -12,7 +9,6 @@ body {
     justify-content: space-between;
     padding: 2rem 10%;
     background: rgb(80, 148, 108);
-
 }
 
 .title:hover {
@@ -58,6 +54,29 @@ body {
 #search-button:hover {
     color: black;
     background: rgb(245, 235, 150);
+}
+.results {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 20px;
+    text-align: left;
+    }
+    
+.results h4 {
+    font-style: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: larger;
+    text-align: left;
+    padding: 5px;
+}
+    
+.results p {
+    text-align: left;
+}
+    
+.results a {
+    font-style: italic;
+    font-size: larger;
+    padding: 5px;
 }
 
 @media screen and (min-width: 550px) {
