@@ -18,12 +18,18 @@ $(function () {
     const transport = $("#transport")
     const bg = document.querySelector("body");
 
-
-    console.log(document.location.search);
+    // const storageArray = localStorage.getItem("TravelApp");
 
     // split string at the '?' and access the value at index 1 (i.e. q=Portland,ME,US&foods) then split again at '&'
     const queryInput = document.location.search.split("?")[1].split("&");
-    console.log(queryInput);
+    const cityName = document.location.search.split("?")[1].split("=")[1].split(",")[0];
+
+    storageArray.push({
+        name: cityName,
+        query: queryInput
+    })
+    console.log(cityName);
+    localStorage.setItem("TravelApp", JSON.stringify(storageArray))
     // cut the array into query and its parameters
     const params = queryInput.splice(1);
     console.log(queryInput);
@@ -46,7 +52,6 @@ $(function () {
     form.submit(handleSubmit);
 
     getImage()
-
 
     // **** API Request functions ****
 
