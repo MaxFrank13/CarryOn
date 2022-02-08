@@ -1,7 +1,7 @@
 $(function () {
     // **** Selectors ****
 
-    const form = $("#card");
+    const form = $(".container");
     const searchBtn = $("#search-button");
     const searchInput = $("#searchbar");
     const country = $("#country");
@@ -14,13 +14,15 @@ $(function () {
 
     // **** Event Listeners ****
 
-    searchBtn.click(handleSubmit);
+    form.submit(handleSubmit);
 
     getImage()
 
     // **** Functions ****
 
     function handleSubmit(event) {
+        event.preventDefault();
+        
         const searchVal = searchInput.val();
         const countryCode = country.val();
         const stateCode = state.val();
@@ -38,11 +40,11 @@ $(function () {
             const transportBox = transport[0].value;
             queryString += "&" + transportBox;
         }
-        location.assign(queryString);
         if (!searchVal) {
             console.error("Please provide a search input");
             return;
         }
+        location.assign(queryString);
 
     }
     // **** Api request ****
