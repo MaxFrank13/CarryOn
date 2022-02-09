@@ -12,7 +12,7 @@ body {
     padding-top: 5%;
     background-repeat: no-repeat ;
     background-size: cover;
-    overflow: hidden;
+    overflow: auto;
 }
 header h3 {
     background: #1f281f;
