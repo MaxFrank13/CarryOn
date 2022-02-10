@@ -11,13 +11,13 @@ UNH Bootcamp: Group 2's 1st Project - Travel Information Web Application
 
 ## Collaborators
 - Max Frank
-    - (email)
+
 - Robert Shwartz
-    - (email)
+
 - Desara Doko
-    - (email)
+
 - Justin Asari
-    - (email)
+
 ## Links
 - GitHub Repository: https://github.com/robertschwartz603/CarryOn
 - GitHub Page: https://robertschwartz603.github.io/CarryOn/
@@ -25,18 +25,13 @@ UNH Bootcamp: Group 2's 1st Project - Travel Information Web Application
 ## About CarryOn
 CarryOn is a travel information website that allows a user to search a specified city's lodges, travel accommodations, and places of interest. Users are able to filter out certain categories such as; food, lodging, amusements, historical/cultural places of interest, nature, and sports. The user is able to specify a city using state and country codes as well. When the user searches a city, pictures highlighting the user's city will be displayed in a banner with the requested data underneath within cards. 
 
-[Describe how Script Works]
-
-[Describe what APIs were used]
-
 ## Languages/APIs Used
 - Bulma (CSS Styling)
-- Moment.js
-    - https://momentjs.com/
 - JQuery
 - JavaScript, HTML, CSS
 - OpenTripMap API
-    - https://opentripmap.io/product
+- Unsplash API
+- OpenWeather API
 
 ## Updates
 - January 31, 2022:
@@ -62,3 +57,7 @@ CarryOn is a travel information website that allows a user to search a specified
     - Updated README/Fixed formatting
 
 ## Screenshots/GIFs
+
+![Home Page](https://github.com/robertschwartz603/CarryOn/blob/main/assets/dev-docs/home-page.PNG)
+![Results Page](https://github.com/robertschwartz603/CarryOn/blob/main/assets/dev-docs/results-page.PNG)
+![Travel Image](https://github.com/robertschwartz603/CarryOn/blob/main/assets/dev-docs/placeholder.jpg)
