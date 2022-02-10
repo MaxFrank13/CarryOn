@@ -58,6 +58,6 @@ CarryOn is a travel information website that allows a user to search a specified
 
 ## Screenshots/GIFs
 
-![Home Page](https://github.com/robertschwartz603/CarryOn/blob/updating-readme/assets/dev-docs/home-page.PNG)
+![Home Page](https://github.com/robertschwartz603/CarryOn/blob/main/assets/dev-docs/home-page.PNG)
 ![Results Page](https://github.com/robertschwartz603/CarryOn/blob/main/assets/dev-docs/results-page.PNG)
 ![Travel Image](https://github.com/robertschwartz603/CarryOn/blob/main/assets/dev-docs/placeholder.jpg)
