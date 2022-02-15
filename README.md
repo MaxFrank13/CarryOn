@@ -1,5 +1,5 @@
 # CarryOn
-UNH Bootcamp: Group 2's 1st Project - Travel Information Web Application
+Travel Information Web Application
 
 ## Table of Content
 - Collaborators
